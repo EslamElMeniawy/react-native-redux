@@ -12,11 +12,13 @@ import {store} from './store';
 
 import Message from './components/Message';
 import MessageClass from './components/MessageClass';
+import Users from './components/Users';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
+    flex: 1,
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
@@ -29,6 +31,7 @@ const App = () => {
           style={backgroundStyle}>
           <Message />
           <MessageClass isDarkMode={isDarkMode} />
+          <Users />
         </ScrollView>
       </SafeAreaView>
     </Provider>
