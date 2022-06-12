@@ -13,6 +13,7 @@ import {store} from './store';
 import Message from './components/Message';
 import MessageClass from './components/MessageClass';
 import Users from './components/Users';
+import UsersRtkApi from './components/UsersRtkApi';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -32,6 +33,7 @@ const App = () => {
           <Message />
           <MessageClass isDarkMode={isDarkMode} />
           <Users />
+          <UsersRtkApi />
         </ScrollView>
       </SafeAreaView>
     </Provider>
