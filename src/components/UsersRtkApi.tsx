@@ -10,11 +10,10 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {getUsers} from '../store/api/usersApi';
-import UserRequest from '../types/UserRequest';
 
 const UsersRtkApi = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const userRequest = new UserRequest({delay: 1});
+  const getUsersParams: Record<string, any> = {delay: 1};
 
   const {
     data: users,
@@ -23,7 +22,7 @@ const UsersRtkApi = () => {
     isError,
     error,
     refetch,
-  } = getUsers(userRequest);
+  } = getUsers({params: getUsersParams});
 
   const containerBackgroundStyle = {
     backgroundColor: isDarkMode ? Colors.black : Colors.white,
