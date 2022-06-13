@@ -13,11 +13,13 @@ import {getUsers} from '../store/api/usersApi';
 
 const UsersRtkApi = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const getUsersParams: Record<string, any> = {delay: 1};
+  const [page, setPage] = React.useState(1);
+  const getUsersParams: Record<string, any> = {delay: 1, page};
 
   const {
-    data: users,
+    data: usersResponse,
     isLoading,
+    isFetching,
     isSuccess,
     isError,
     error,
@@ -37,17 +39,23 @@ const UsersRtkApi = () => {
   }
 
   if (isError) {
-    return <Text style={textColorStyle}>{error}</Text>;
+    return <Text style={[styles.error, textColorStyle]}>{error}</Text>;
   }
 
   if (isSuccess) {
+    if (!usersResponse?.data) {
+      return (
+        <Text style={[styles.error, textColorStyle]}>No Users Available!</Text>
+      );
+    }
+
     return (
       <View style={[styles.container, containerBackgroundStyle]}>
         <View style={styles.reloadButtonContainer}>
-          <Button title={'Reload'} onPress={refetch} />
+          <Button title="Reload" onPress={refetch} />
         </View>
 
-        {users.map(user => {
+        {usersResponse?.data?.map(user => {
           return (
             <View style={styles.userContainer} key={user.id}>
               <View>
@@ -59,6 +67,18 @@ const UsersRtkApi = () => {
             </View>
           );
         })}
+
+        <View style={styles.reloadButtonContainer}>
+          {isFetching ? (
+            <ActivityIndicator size="small" />
+          ) : (
+            <Button
+              title="Load More"
+              onPress={() => setPage(prev => prev + 1)}
+              disabled={page === usersResponse.total_pages}
+            />
+          )}
+        </View>
       </View>
     );
   }
@@ -70,6 +90,11 @@ export default UsersRtkApi;
 
 const styles = StyleSheet.create({
   loader: {
+    marginVertical: 8,
+  },
+  error: {
+    width: '90%',
+    alignSelf: 'center',
     marginVertical: 8,
   },
   container: {
