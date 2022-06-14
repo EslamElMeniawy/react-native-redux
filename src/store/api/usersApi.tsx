@@ -39,7 +39,12 @@ export const usersApi = api.injectEndpoints({
       }),
     }),
     updateUser: builder.mutation<UserData, ApiRequest>({
-      invalidatesTags: ['Users'],
+      // Invalidates the tag for this User `id`, as well as the `PARTIAL-LIST` tag,
+      // causing the `getUsers` query to re-fetch if a component is subscribed to the query.
+      invalidatesTags: result => [
+        {type: 'Users', id: result?.id},
+        {type: 'Users', id: 'PARTIAL-LIST'},
+      ],
       query: apiRequest => ({
         url: '/users',
         method: 'PUT',
