@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   StyleSheet,
-  View,
   Text,
   ActivityIndicator,
   Button,
@@ -12,6 +11,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {getUsers} from '../../store/api/usersApi';
 
 import Spacer from '../Spacer';
+import UserItem from './UserItem';
+import UsersPagination from './UsersPagination';
 
 const UsersRtkApi = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,7 +22,6 @@ const UsersRtkApi = () => {
   const {
     data: usersResponse,
     isLoading,
-    isFetching,
     isSuccess,
     isError,
     error,
@@ -55,42 +55,13 @@ const UsersRtkApi = () => {
           return (
             <React.Fragment key={user.id}>
               <Spacer />
-              <View>
-                <Text style={textColorStyle}>
-                  {user.first_name} {user.last_name}
-                </Text>
-                <Text style={textColorStyle}>{user.email}</Text>
-              </View>
+              <UserItem user={user} />
             </React.Fragment>
           );
         })}
 
         <Spacer />
-        <View style={styles.buttonsContainer}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title="Previous"
-              onPress={() => setPage(prev => prev - 1)}
-              disabled={page === 1 || isFetching || isLoading}
-            />
-          </View>
-          {isFetching && (
-            <ActivityIndicator size="small" style={styles.buttonContainer} />
-          )}
-          {!isFetching && (
-            <Text
-              style={[styles.pageText, textColorStyle]}>{`Page ${page}`}</Text>
-          )}
-          <View style={styles.buttonContainer}>
-            <Button
-              title="Next"
-              onPress={() => setPage(prev => prev + 1)}
-              disabled={
-                page === usersResponse.total_pages || isFetching || isLoading
-              }
-            />
-          </View>
-        </View>
+        <UsersPagination page={page} setPage={setPage} />
       </>
     );
   }
@@ -103,17 +74,5 @@ export default UsersRtkApi;
 const styles = StyleSheet.create({
   error: {
     textAlign: 'center',
-  },
-  buttonsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  buttonContainer: {
-    flex: 1,
-  },
-  pageText: {
-    flex: 1,
-    textAlign: 'center',
-    marginHorizontal: 8,
   },
 });
