@@ -1,12 +1,12 @@
 import React from 'react';
 
 import ScreenContainer from '../components/ScreenContainer';
-import Message from '../components/message/Message';
+import UsersRtkApi from '../components/users/UsersRtkApi';
 
 export default () => {
   return (
     <ScreenContainer>
-      <Message />
+      <UsersRtkApi />
     </ScreenContainer>
   );
 };

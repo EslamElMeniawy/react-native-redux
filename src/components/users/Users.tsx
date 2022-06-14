@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {
-  StyleSheet,
   View,
   Text,
   ActivityIndicator,
@@ -13,6 +12,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {RootState, AppDispatch} from '../../store';
 import {fetchUsers, selectAllUsers} from '../../store/users';
 
+import Spacer from '../Spacer';
+
 function Users(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const dispatch = useDispatch<AppDispatch>();
@@ -23,56 +24,33 @@ function Users(): JSX.Element {
     dispatch(fetchUsers());
   }, [dispatch]);
 
-  const containerBackgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.black : Colors.white,
-  };
-
   const textColorStyle = {
     color: isDarkMode ? Colors.light : Colors.dark,
   };
 
   if (loading) {
-    return <ActivityIndicator size="large" style={styles.loader} />;
+    return <ActivityIndicator size="large" />;
   }
 
   return (
-    <View style={[styles.container, containerBackgroundStyle]}>
-      <View style={styles.reloadButtonContainer}>
-        <Button title={'Reload'} onPress={() => dispatch(fetchUsers())} />
-      </View>
+    <>
+      <Button title={'Reload'} onPress={() => dispatch(fetchUsers())} />
 
       {users.map(user => {
         return (
-          <View style={styles.userContainer} key={user.id}>
+          <React.Fragment key={user.id}>
+            <Spacer />
             <View>
               <Text style={textColorStyle}>
                 {user.first_name} {user.last_name}
               </Text>
               <Text style={textColorStyle}>{user.email}</Text>
             </View>
-          </View>
+          </React.Fragment>
         );
       })}
-    </View>
+    </>
   );
 }
 
 export default Users;
-
-const styles = StyleSheet.create({
-  loader: {
-    marginVertical: 8,
-  },
-  container: {
-    marginVertical: 8,
-    padding: 8,
-  },
-  reloadButtonContainer: {
-    width: '90%',
-    alignSelf: 'center',
-    marginVertical: 8,
-  },
-  userContainer: {
-    marginVertical: 8,
-  },
-});

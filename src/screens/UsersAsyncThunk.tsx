@@ -1,12 +1,12 @@
 import React from 'react';
 
 import ScreenContainer from '../components/ScreenContainer';
-import Message from '../components/message/Message';
+import Users from '../components/users/Users';
 
 export default () => {
   return (
     <ScreenContainer>
-      <Message />
+      <Users />
     </ScreenContainer>
   );
 };

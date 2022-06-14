@@ -40,5 +40,6 @@ const styles = StyleSheet.create({
   container: {
     width: '90%',
     alignSelf: 'center',
+    paddingVertical: 16,
   },
 });

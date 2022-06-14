@@ -7,6 +7,8 @@ import type {RootStackParamList} from '../types/navigation';
 import HomeScreen from '../screens/Home';
 import MessageHooksScreen from '../screens/MessageHooks';
 import MessageClassScreen from '../screens/MessageClass';
+import UsersAsyncThunkScreen from '../screens/UsersAsyncThunk';
+import UsersRTKQueryScreen from '../screens/UsersRTKQuery';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -29,12 +31,12 @@ export default () => {
       />
       <Stack.Screen
         name="UsersAsyncThunk"
-        component={HomeScreen}
+        component={UsersAsyncThunkScreen}
         options={{title: 'Users Async Thunk'}}
       />
       <Stack.Screen
         name="UsersRTKQuery"
-        component={HomeScreen}
+        component={UsersRTKQueryScreen}
         options={{title: 'Users RTK Query'}}
       />
     </Stack.Navigator>

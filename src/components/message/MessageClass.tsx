@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {Text, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -28,11 +28,11 @@ class MessageClass extends React.PureComponent<MyComponentProps> {
     };
 
     return (
-      <View style={styles.container}>
+      <>
         <Text style={[styles.text, textColorStyle]}>{message}</Text>
         <Spacer />
         <Button title="Set Message" onPress={this.handlePress} />
-      </View>
+      </>
     );
   }
 }
@@ -44,9 +44,6 @@ const mapStateToProps = (state: RootState) => ({
 export default connect(mapStateToProps)(MessageClass);
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 16,
-  },
   text: {
     textAlign: 'center',
   },

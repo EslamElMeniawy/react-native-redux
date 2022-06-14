@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet, useColorScheme} from 'react-native';
+import {Text, Button, StyleSheet, useColorScheme} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
@@ -22,20 +22,17 @@ const Message = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <>
       <Text style={[styles.text, textColorStyle]}>{message}</Text>
       <Spacer />
       <Button title="Set Message" onPress={handlePress} />
-    </View>
+    </>
   );
 };
 
 export default Message;
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 16,
-  },
   text: {
     textAlign: 'center',
   },

@@ -9,14 +9,13 @@ import type {
 import ScreenContainer from '../components/ScreenContainer';
 import Spacer from '../components/Spacer';
 
-const HomeScreen = ({navigation}: RootStackScreenProps<'Home'>) => {
+export default ({navigation}: RootStackScreenProps<'Home'>) => {
   const navigateToScreen = (screenName: keyof RootStackParamList) => {
     navigation.navigate(screenName);
   };
 
   return (
     <ScreenContainer>
-      <Spacer />
       <Button
         title="Message Hooks"
         onPress={() => navigateToScreen('MessageHooks')}
@@ -36,9 +35,6 @@ const HomeScreen = ({navigation}: RootStackScreenProps<'Home'>) => {
         title="Users RTK Query"
         onPress={() => navigateToScreen('UsersRTKQuery')}
       />
-      <Spacer />
     </ScreenContainer>
   );
 };
-
-export default HomeScreen;
