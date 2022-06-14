@@ -3,10 +3,10 @@ import {View, Text, Button, StyleSheet, useColorScheme} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {RootState} from '../store';
-import {setMessage} from '../store/message';
+import {RootState} from '../../store';
+import {setMessage} from '../../store/message';
 
-import Spacer from './Spacer';
+import Spacer from '../Spacer';
 
 const Message = () => {
   const isDarkMode = useColorScheme() === 'dark';

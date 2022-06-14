@@ -10,8 +10,8 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {RootState, AppDispatch} from '../store';
-import {fetchUsers, selectAllUsers} from '../store/users';
+import {RootState, AppDispatch} from '../../store';
+import {fetchUsers, selectAllUsers} from '../../store/users';
 
 function Users(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';

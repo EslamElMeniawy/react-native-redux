@@ -3,10 +3,10 @@ import {View, Text, Button, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {RootState, AppDispatch} from '../store';
-import {setMessage} from '../store/message';
+import {RootState, AppDispatch} from '../../store';
+import {setMessage} from '../../store/message';
 
-import Spacer from './Spacer';
+import Spacer from '../Spacer';
 
 interface MyComponentProps {
   dispatch: AppDispatch;

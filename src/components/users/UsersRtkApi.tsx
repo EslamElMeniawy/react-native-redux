@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {getUsers} from '../store/api/usersApi';
+import {getUsers} from '../../store/api/usersApi';
 
 const UsersRtkApi = () => {
   const isDarkMode = useColorScheme() === 'dark';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ScreenContainer from '../components/ScreenContainer';
-import Message from '../components/Message';
+import Message from '../components/message/Message';
 
 const MessageHooksScreen = () => {
   return (
