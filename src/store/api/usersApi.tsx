@@ -20,11 +20,6 @@ export const usersApi = api.injectEndpoints({
         method: 'GET',
         params: apiRequest?.params,
       }),
-      async onQueryStarted(_arg, {queryFulfilled}) {
-        queryFulfilled.then(result => {
-          console.info('result', result);
-        });
-      },
     }),
     getUser: builder.query<UserData, UserData>({
       query: user => `/users/${user.id}`,
