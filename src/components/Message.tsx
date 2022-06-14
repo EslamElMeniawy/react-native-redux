@@ -6,17 +6,15 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {RootState} from '../store';
 import {setMessage} from '../store/message';
 
+import Spacer from './Spacer';
+
 const Message = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const dispatch = useDispatch();
   const {message} = useSelector((state: RootState) => state.message);
 
   const handlePress = () => {
-    dispatch(setMessage('Message from Component'));
-  };
-
-  const containerBackgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.black : Colors.white,
+    dispatch(setMessage('Message from Hooks Component'));
   };
 
   const textColorStyle = {
@@ -24,9 +22,10 @@ const Message = () => {
   };
 
   return (
-    <View style={[styles.container, containerBackgroundStyle]}>
-      <Text style={textColorStyle}>{message}</Text>
-      <Button title={'Set Message'} onPress={handlePress} />
+    <View style={styles.container}>
+      <Text style={[styles.text, textColorStyle]}>{message}</Text>
+      <Spacer />
+      <Button title="Set Message" onPress={handlePress} />
     </View>
   );
 };
@@ -35,10 +34,9 @@ export default Message;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8,
-    padding: 8,
+    marginVertical: 16,
+  },
+  text: {
+    textAlign: 'center',
   },
 });

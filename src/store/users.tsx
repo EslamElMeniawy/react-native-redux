@@ -5,7 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import {RootState} from '.';
-import UserData from '../types/UserData';
+import UserData from '../types/api/UserData';
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
   const response = await fetch('https://reqres.in/api/users?delay=1');

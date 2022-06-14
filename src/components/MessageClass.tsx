@@ -6,6 +6,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {RootState, AppDispatch} from '../store';
 import {setMessage} from '../store/message';
 
+import Spacer from './Spacer';
+
 interface MyComponentProps {
   dispatch: AppDispatch;
   message: string;
@@ -21,18 +23,15 @@ class MessageClass extends React.PureComponent<MyComponentProps> {
   render() {
     const {message, isDarkMode} = this.props;
 
-    const containerBackgroundStyle = {
-      backgroundColor: isDarkMode ? Colors.black : Colors.white,
-    };
-
     const textColorStyle = {
       color: isDarkMode ? Colors.light : Colors.dark,
     };
 
     return (
-      <View style={[styles.container, containerBackgroundStyle]}>
-        <Text style={textColorStyle}>{message}</Text>
-        <Button title={'Set Message'} onPress={this.handlePress} />
+      <View style={styles.container}>
+        <Text style={[styles.text, textColorStyle]}>{message}</Text>
+        <Spacer />
+        <Button title="Set Message" onPress={this.handlePress} />
       </View>
     );
   }
@@ -46,10 +45,9 @@ export default connect(mapStateToProps)(MessageClass);
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8,
-    padding: 8,
+    marginVertical: 16,
+  },
+  text: {
+    textAlign: 'center',
   },
 });

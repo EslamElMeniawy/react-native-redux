@@ -1,7 +1,7 @@
 import {api} from './rtkApi';
-import UserData from '../../types/UserData';
-import ApiRequest from '../../types/ApiRequest';
-import PagingResponse from '../../types/PagingResponse';
+import UserData from '../../types/api/UserData';
+import ApiRequest from '../../types/api/ApiRequest';
+import PagingResponse from '../../types/api/PagingResponse';
 
 export const usersApi = api.injectEndpoints({
   endpoints: builder => ({

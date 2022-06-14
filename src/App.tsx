@@ -1,43 +1,14 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
 import {Provider} from 'react-redux';
+
 import {store} from './store';
 
-import Message from './components/Message';
-import MessageClass from './components/MessageClass';
-import Users from './components/Users';
-import UsersRtkApi from './components/UsersRtkApi';
+import NavigationContainer from './navigation/NavigationContainer';
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    flex: 1,
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+export default () => {
   return (
     <Provider store={store}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          <Message />
-          <MessageClass isDarkMode={isDarkMode} />
-          <Users />
-          <UsersRtkApi />
-        </ScrollView>
-      </SafeAreaView>
+      <NavigationContainer />
     </Provider>
   );
 };
-
-export default App;
