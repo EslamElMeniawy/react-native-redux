@@ -52,6 +52,7 @@ export const usersApi = api.injectEndpoints({
       }),
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {
