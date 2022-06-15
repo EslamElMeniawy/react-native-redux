@@ -1,20 +1,16 @@
 import React from 'react';
 import {Text, Button, StyleSheet} from 'react-native';
-import {connect} from 'react-redux';
+import {connect, ConnectedProps} from 'react-redux';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-import {RootState, AppDispatch} from '../../store';
+import {RootState} from '../../store';
 import {setMessage} from '../../store/message';
 
 import Spacer from '../Spacer';
 
-interface MyComponentProps {
-  dispatch: AppDispatch;
-  message: string;
-  isDarkMode: boolean;
-}
+type MessageClassProps = ConnectedProps<typeof connector>;
 
-class MessageClass extends React.PureComponent<MyComponentProps> {
+class MessageClass extends React.PureComponent<MessageClassProps> {
   handlePress = () => {
     const {dispatch} = this.props;
     dispatch(setMessage('Message from Class Component'));
@@ -37,11 +33,14 @@ class MessageClass extends React.PureComponent<MyComponentProps> {
   }
 }
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState, props: {isDarkMode: boolean}) => ({
+  ...props,
   message: state.message.message,
 });
 
-export default connect(mapStateToProps)(MessageClass);
+const connector = connect(mapStateToProps);
+
+export default connector(MessageClass);
 
 const styles = StyleSheet.create({
   text: {

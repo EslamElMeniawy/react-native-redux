@@ -21,8 +21,8 @@ export const usersApi = api.injectEndpoints({
         params: apiRequest?.params,
       }),
     }),
-    getUser: builder.query<UserData, UserData>({
-      query: user => `/users/${user.id}`,
+    getUser: builder.query<UserData, UserData | void>({
+      query: user => `/users/${user?.id}?delay=1`,
       transformResponse: (response: any) => response.data,
     }),
     addUser: builder.mutation<UserData, ApiRequest>({

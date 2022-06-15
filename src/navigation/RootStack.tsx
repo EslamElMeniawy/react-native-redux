@@ -9,6 +9,7 @@ import MessageHooksScreen from '../screens/MessageHooks';
 import MessageClassScreen from '../screens/MessageClass';
 import UsersAsyncThunkScreen from '../screens/UsersAsyncThunk';
 import UsersRTKQueryScreen from '../screens/UsersRTKQuery';
+import UserRTKQueryClassScreen from '../screens/UserRTKQueryClass';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -38,6 +39,11 @@ export default () => {
         name="UsersRTKQuery"
         component={UsersRTKQueryScreen}
         options={{title: 'Users RTK Query'}}
+      />
+      <Stack.Screen
+        name="UserRTKQueryClass"
+        component={UserRTKQueryClassScreen}
+        options={{title: 'User RTK Query Class'}}
       />
     </Stack.Navigator>
   );
